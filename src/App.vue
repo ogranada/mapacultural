@@ -44,7 +44,8 @@ body {
 
 .Header {
   background-color: $orange;
-  padding: 1.5em 3em;
+  // padding: 1.5em 3em;
+  padding: 1.5em 3em 2.5em 3em;
   position: relative;
   margin: 0;
 
