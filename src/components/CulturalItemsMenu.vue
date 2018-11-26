@@ -6,24 +6,37 @@
         v-for="(value, key) in getValidItems"
         :key="key"
         :class="{isExpanded:isExpanded(key)}"
-        @click="toggleExpanded(key)"
         >
-        <div class="CulturalItemsMenu-itemContainer">
+        <div class="CulturalItemsMenu-itemContainer"
+          @click="toggleExpanded(key)" >
           <img 
             class="CulturalItemsMenu-icon"
-            @click="toggleExpanded(key)"
             :src="getIcon(key)"
             :alt="key">
-          <span
-            @click="toggleExpanded(key)"
-            >
+          <span>
             {{key}}
           </span>
         </div>
         <div>
           <ul class="CulturalItemsMenu-submenu">
-            <li v-for="(subvalue, subkey) in value" :key="subkey">
-              {{subkey}}
+            <li v-for="(subvalue, subkey) in value" :key="subkey"
+              >
+              <div class="CulturalItemsMenu-itemContainer"
+                @click="toggleExpanded(key, subkey)"
+                >
+                <img 
+                  class="CulturalItemsMenu-icon"
+                  :src="getIcon(key)"
+                  :alt="subkey">
+                <span>
+                  {{subkey}}
+                </span>
+              </div>
+              <ul class="CulturalItemsMenu-itemsMenu">
+                <li v-for="(finalvalue, finalkey) in value" :key="finalkey">
+                  {{ finalkey }}
+                </li>
+              </ul>
             </li>
           </ul>
         </div>
@@ -60,12 +73,15 @@ export default {
     getIcon(elm) {
       return this.icons[toTitleCase(elm)];
     },
-    toggleExpanded(value){
+    toggleExpanded(...values){
+      const value = values.map(x=>x.replace(/\s/g, '_')).join('_');
+      window.console.log(value);
       const expandedItems = {...this.expandedItems};
       expandedItems[value] = !expandedItems[value];
       this.$set(this, 'expandedItems', expandedItems);
     },
-    isExpanded(value) {
+    isExpanded(...values) {
+      const value = values.map(x=>x.replace(/\s/g, '_')).join('_');
       return this.expandedItems[value];
     },
     prepareDragAndDrop() {
@@ -125,9 +141,10 @@ export default {
   top: 1em;
   right: 1em;
   z-index: 1000;
-  background-color: rgba(90, 90, 90, 0.3);
+  background-color: rgb(190, 190, 190); // rgba(90, 90, 90, 0.3);
   padding: 0.5em;
   border-radius: 2px;
+  cursor: pointer;
 
   &-items {
     padding: 0.5em 1em;
@@ -183,6 +200,9 @@ export default {
   &-submenu {
     max-height: 0;
     overflow: hidden;
+    list-style: none;
+    margin: 0;
+    padding-left: 2em;
   }
 
 }

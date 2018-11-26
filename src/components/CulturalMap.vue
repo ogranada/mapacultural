@@ -66,7 +66,10 @@ export default {
         let layer = window.L.geoJSON(elm, {
           // onEachFeature: onEachFeature
           pointToLayer: function(feature, latlng) {
-            categoryImages[toTitleCase(feature.properties["area"]).trim()] = getIconUrlFromTag(feature);
+            // window.console.log('->', toTitleCase(feature.properties["area"]).trim(), '(',feature.properties.tags, ') ==>', getIconUrlFromTag(feature));
+            const iconPath = getIconUrlFromTag(feature);
+            categoryImages[toTitleCase(feature.properties["area"]).trim()] = iconPath;
+            categoryImages[toTitleCase(feature.properties.tags).trim()] = iconPath;
             const icon = window.L.icon({
               iconUrl: getIconUrlFromTag(feature),
               iconSize: [28, 28]

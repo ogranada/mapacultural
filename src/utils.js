@@ -116,7 +116,6 @@ export function getIconUrlFromTag(feature) {
       return "markers/iconos para mapa interactivo 2018-50.svg";
     case "Plaza":
       return "markers/iconos para mapa interactivo 2018-50.svg";
-
     case "Discotecas y clubes nocturnos":
       return "markers/iconos para mapa interactivo 2018-40 (1).svg";
     case "Lugares de bohemia":
