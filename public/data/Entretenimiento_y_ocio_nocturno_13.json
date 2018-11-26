@@ -12,7 +12,7 @@
             "type": "Feature",
             "properties": {
                 "nombre": "Armada 62",
-                "area": "Servicios y lugaes complementarios",
+                "area": "Servicios y lugares complementarios",
                 "categoria": "Entretenimiento y ocio nocturno",
                 "tags": "Discotecas y clubes nocturnos"
             },
@@ -28,7 +28,7 @@
             "type": "Feature",
             "properties": {
                 "nombre": "Discoteca La Baranda",
-                "area": "Servicios y lugaes complementarios",
+                "area": "Servicios y lugares complementarios",
                 "categoria": "Entretenimiento y ocio nocturno",
                 "tags": "Discotecas y clubes nocturnos"
             },
@@ -44,7 +44,7 @@
             "type": "Feature",
             "properties": {
                 "nombre": "Discoteca Galáctico",
-                "area": "Servicios y lugaes complementarios",
+                "area": "Servicios y lugares complementarios",
                 "categoria": "Entretenimiento y ocio nocturno",
                 "tags": "Discotecas y clubes nocturnos"
             },
@@ -60,7 +60,7 @@
             "type": "Feature",
             "properties": {
                 "nombre": "Fuente de Soda El Pavo",
-                "area": "Servicios y lugaes complementarios",
+                "area": "Servicios y lugares complementarios",
                 "categoria": "Entretenimiento y ocio nocturno",
                 "tags": "Lugares de bohemia"
             },
@@ -76,7 +76,7 @@
             "type": "Feature",
             "properties": {
                 "nombre": "Fonda Temática La Una",
-                "area": "Servicios y lugaes complementarios",
+                "area": "Servicios y lugares complementarios",
                 "categoria": "Entretenimiento y ocio nocturno",
                 "tags": "Discotecas y clubes nocturnos"
             },
@@ -92,7 +92,7 @@
             "type": "Feature",
             "properties": {
                 "nombre": "La Sonora Ponceña",
-                "area": "Servicios y lugaes complementarios",
+                "area": "Servicios y lugares complementarios",
                 "categoria": "Entretenimiento y ocio nocturno",
                 "tags": "Discotecas y clubes nocturnos"
             },
@@ -108,7 +108,7 @@
             "type": "Feature",
             "properties": {
                 "nombre": "Rincón Clásico",
-                "area": "Servicios y lugaes complementarios",
+                "area": "Servicios y lugares complementarios",
                 "categoria": "Entretenimiento y ocio nocturno",
                 "tags": "Lugares de bohemia"
             },

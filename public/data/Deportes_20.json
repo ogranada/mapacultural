@@ -12,7 +12,7 @@
             "type": "Feature",
             "properties": {
                 "nombre": "Bioparque Ukumari",
-                "area": "Servicios y lugares complmentarios",
+                "area": "Servicios y lugares complementarios",
                 "categoria": "Deporte, aire libre y aventura",
                 "tags": "Centros de recreación"
             },
@@ -28,7 +28,7 @@
             "type": "Feature",
             "properties": {
                 "nombre": "Estadio Hernán Ramírez Villegas",
-                "area": "Servicios y lugares complmentarios",
+                "area": "Servicios y lugares complementarios",
                 "categoria": "Deporte, aire libre y aventura",
                 "tags": "Infraestructura deportiva"
             },
@@ -44,7 +44,7 @@
             "type": "Feature",
             "properties": {
                 "nombre": "Parque Consotá",
-                "area": "Servicios y lugares complmentarios",
+                "area": "Servicios y lugares complementarios",
                 "categoria": "Deporte, aire libre y aventura",
                 "tags": "Centros de recreación"
             },
@@ -60,7 +60,7 @@
             "type": "Feature",
             "properties": {
                 "nombre": "Piscinas Villa Olímpica",
-                "area": "Servicios y lugares complmentarios",
+                "area": "Servicios y lugares complementarios",
                 "categoria": "Deporte, aire libre y aventura",
                 "tags": "Infraestructura deportiva"
             },
@@ -76,7 +76,7 @@
             "type": "Feature",
             "properties": {
                 "nombre": "Skate Park La Villa",
-                "area": "Servicios y lugares complmentarios",
+                "area": "Servicios y lugares complementarios",
                 "categoria": "Deporte, aire libre y aventura",
                 "tags": "Infraestructura deportiva"
             },
@@ -92,7 +92,7 @@
             "type": "Feature",
             "properties": {
                 "nombre": "Velodromo Alfonso Hurtado Sierra",
-                "area": "Servicios y lugares complmentarios",
+                "area": "Servicios y lugares complementarios",
                 "categoria": "Deporte, aire libre y aventura",
                 "tags": "Infraestructura deportiva"
             },
