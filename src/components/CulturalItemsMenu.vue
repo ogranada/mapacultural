@@ -164,7 +164,7 @@ export default {
   border-bottom: 4px solid transparent;
   border-right: 4px solid transparent;
   right: 5px;
-  top: 20px;
+  top: 24px;
   transform-origin: 2px -2px;
   transform: rotateZ(45deg) translateY(-50%);
   transition: all 0.5s ease;
@@ -211,6 +211,7 @@ export default {
     display: flex;
     align-items: center;
     position: relative;
+    max-height: 48px;
   }
 
   &-submenu &-itemContainer {
