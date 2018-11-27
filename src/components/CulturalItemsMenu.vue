@@ -1,5 +1,9 @@
 <template>
   <div class="CulturalItemsMenu">
+    <div class="CulturalItemsMenu-searchContainer">
+      <input type="text" class="CulturalItemsMenu-search" placeholder="Search" v-model="filter">
+      <button class="CulturalItemsMenu-searchButton"></button>
+    </div>
     <ul class="CulturalItemsMenu-items">
       <li
         class="CulturalItemsMenu-item"
@@ -23,6 +27,7 @@
               >
               <div class="CulturalItemsMenu-itemContainer"
                 @click="toggleExpanded(key, subkey)"
+                :class="{isExpanded: isExpanded(key, subkey)}"
                 >
                 <img 
                   class="CulturalItemsMenu-icon"
@@ -32,9 +37,15 @@
                   {{subkey}}
                 </span>
               </div>
-              <ul class="CulturalItemsMenu-itemsMenu">
-                <li v-for="(finalvalue, finalkey) in value" :key="finalkey">
-                  {{ finalkey }}
+              <ul
+                class="CulturalItemsMenu-itemsMenu"
+                :class="{isExpanded: isExpanded(key, subkey)}"
+                >
+                <li v-for="(finalvalue, finalkey) in subvalue" :key="finalkey" v-if="isValidByFilter(finalvalue)">
+                  <div class="CulturalItemsMenu-placeItem">
+                    <img class="CulturalItemsMenu-icon" :src="getIcon(finalvalue.properties.tags)" :alt="finalvalue.properties.nombre">
+                    <span>{{ finalvalue.properties.nombre }}</span>
+                  </div>
                 </li>
               </ul>
             </li>
@@ -53,7 +64,8 @@ export default {
   name: "CulturalItemsMenu",
   props: ["items", "icons"],
   data: () => ({
-    expandedItems: {}
+    expandedItems: {},
+    filter: ''
   }),
   mounted() {
     window.console.log(this.items);
@@ -70,6 +82,11 @@ export default {
     }
   },
   methods: {
+    isValidByFilter (value) {
+      return value.properties.nombre
+        .toLowerCase()
+        .includes(this.filter.toLowerCase());
+    },
     getIcon(elm) {
       return this.icons[toTitleCase(elm)];
     },
@@ -136,15 +153,53 @@ export default {
 </script>
 
 <style lang="scss">
+
+@mixin thumb() {
+  content: '';
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  border-top: 4px solid black;
+  border-left: 4px solid black;
+  border-bottom: 4px solid transparent;
+  border-right: 4px solid transparent;
+  right: 5px;
+  top: 20px;
+  transform-origin: 2px -2px;
+  transform: rotateZ(45deg) translateY(-50%);
+  transition: all 0.5s ease;
+  z-index: -1;
+}
+
+
+.CulturalItemsMenu {
+  &::-webkit-scrollbar,
+  & ::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 50%;
+  }
+  
+  & ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  }
+  
+  & ::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+  }
+}
+
 .CulturalItemsMenu {
   position: absolute;
   top: 1em;
   right: 1em;
   z-index: 1000;
-  background-color: rgb(190, 190, 190); // rgba(90, 90, 90, 0.3);
+  background-color: rgba(190, 190, 190, 0.8);
   padding: 0.5em;
   border-radius: 2px;
   cursor: pointer;
+  max-height: 80vh;
+  overflow-y: scroll;
 
   &-items {
     padding: 0.5em 1em;
@@ -155,54 +210,115 @@ export default {
   &-itemContainer {
     display: flex;
     align-items: center;
+    position: relative;
+  }
+
+  &-submenu &-itemContainer {
+    &::after {
+      @include thumb();
+    }
+    &.isExpanded::after {
+      transform: rotateZ(225deg) translateY(-50%);
+    }
   }
 
   &-item {
     margin: 0;
-    padding: 0 1.5em 0 0;
+    padding: 0;
     position: relative;
     min-height: 3em;
     line-height: 3em;
 
-    &::before {
-      content: '';
-      position: absolute;
-      margin: 0;
-      padding: 0;
-      border-top: 4px solid black;
-      border-left: 4px solid black;
-      border-bottom: 4px solid transparent;
-      border-right: 4px solid transparent;
-      right: 0;
-      top: 20px;
-      transform-origin: 4px 2px;
-      transform: rotateZ(45deg) translateY(-50%);
-      transition: all 0.5s ease-in-out;
+    &::after {
+      @include thumb();
     }
 
-    &.isExpanded::before {
+    &.isExpanded::after {
       transform: rotateZ(225deg) translateY(-50%);
     }
     &.isExpanded {
       .CulturalItemsMenu-submenu {
-        max-height: 100%;
-        overflow: scroll;
+        max-height: 100vh;
       }
     }
+
   }
 
   &-icon {
-    width: 1em;
-    height: 1.5em;
+    width: 20px;
+    height: 30px;
     margin-right: 1em; 
   }
 
   &-submenu {
-    max-height: 0;
-    overflow: hidden;
-    list-style: none;
     margin: 0;
+    max-height: 0;
+    transition: all 0.5s ease-out;
+    overflow-y: hidden;
+    list-style: none;
     padding-left: 2em;
+  }
+
+  &-itemsMenu {
+    margin: 0;
+    max-height: 0;
+    transition: all 0.5s ease-out;
+    overflow-y: hidden;
+    list-style: none;
+
+    &.isExpanded {
+      max-height: 500px;
+      overflow-y: scroll;
+    }
+  }
+
+  &-placeItem {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &-searchContainer {
+    position: relative;
+    display: flex;
+    justify-content: stretch;
+  }
+  &-searchButton {
+    width: 25px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    &::before {
+      content: '';
+      position: absolute;
+      border: 2px solid black;
+      width: 4px;
+      height: 0px;
+      right: 2px;
+      top: 16px;
+      transform: rotateZ(42deg);
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      border: 2px solid black;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      right: 6px;
+      top: 4px;
+    }
+  }
+
+  &-search {
+    width: 100%;
+    padding: 5px;
+    border-radius: 3px;
+    border: none;
+    background: transparent;
+    &:focus {
+      background: white;
+    }
   }
 
 }

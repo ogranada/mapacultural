@@ -1,5 +1,3 @@
-/*global L*/
-
 <template>
   <div class="CulturalMap">
     <div class="CulturalMap-map" id="CulturalMap"></div>
@@ -9,7 +7,7 @@
 
 <script>
 import CulturalItemsMenu from "@/components/CulturalItemsMenu";
-import {getIconUrlFromTag, toTitleCase} from '../utils.js';
+import {getIconUrlFromTag, getIconFromString, toTitleCase} from '../utils.js';
 
 export default {
   name: "CulturalMap",
@@ -18,6 +16,16 @@ export default {
     categoryImages: {}
   }),
   methods: {
+    onEachFeature(feature, layer) {
+      let popupInfo = document.getElementById('popupMarkup').innerHTML;
+      const keys = Object.keys(feature.properties);
+      if(keys.length && keys.length>0) {
+        for (let key in feature.properties) {
+          popupInfo = popupInfo.replace(`value_${key}`, feature.properties[key]);
+        }
+        layer.bindPopup(popupInfo);
+      }
+    },
     async loadFile(name) {
       let result = {
         features: []
@@ -64,15 +72,20 @@ export default {
       const categoryImages = {};
       data.forEach(elm => {
         let layer = window.L.geoJSON(elm, {
-          // onEachFeature: onEachFeature
+          onEachFeature: this.onEachFeature,
           pointToLayer: function(feature, latlng) {
-            // window.console.log('->', toTitleCase(feature.properties["area"]).trim(), '(',feature.properties.tags, ') ==>', getIconUrlFromTag(feature));
+            const areaStr = toTitleCase(feature.properties["area"]).trim();
+            const iconPathArea = getIconFromString(areaStr);
             const iconPath = getIconUrlFromTag(feature);
-            categoryImages[toTitleCase(feature.properties["area"]).trim()] = iconPath;
+            if(iconPathArea) {
+              categoryImages[areaStr] = iconPathArea;
+            } else {
+              categoryImages[areaStr] = iconPath;
+            }
             categoryImages[toTitleCase(feature.properties.tags).trim()] = iconPath;
             const icon = window.L.icon({
               iconUrl: getIconUrlFromTag(feature),
-              iconSize: [28, 28]
+              iconSize: [40, 40]
             });
             const markerData = {};
             if (icon) {
@@ -90,6 +103,7 @@ export default {
       });
       const grouped = data.reduce((acc, file) => {
         //*
+        const existents = [];
         file.features.forEach(item => {
           const area = toTitleCase(item.properties.area || '__undefined_area').trim();
           const categoria = toTitleCase(item.properties.categoria || '__undefined_category').trim();
@@ -99,7 +113,11 @@ export default {
           if(!acc[area][categoria]) {
             acc[area][categoria] = [];
           }
-          acc[area][categoria].push(item);
+          const elm_id = `${item.properties.nombre}${item.geometry.coordinates.join('_')}`;
+          if(!existents.includes(elm_id)) {
+            existents.push(elm_id);
+            acc[area][categoria].push(item);
+          }
         });
         // */
         return acc;

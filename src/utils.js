@@ -9,141 +9,216 @@ export function toTitleCase(str) {
 }
 
 export function getIconUrlFromTag(feature) {
-  switch (feature.properties["tags"].trim()) {
+  return getIconFromString(feature.properties["tags"].trim());
+}
+
+export function getIconFromString(str) {
+  let iconPath = false;
+  switch (str) {
+    case "Artes":
+      iconPath = "markers/iconos para mapa interactivo 2018-29 (1).svg";
+      break;
     case "Arte Publico":
-      return "markers/iconos para mapa interactivo 2018-25.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-25.svg";
+      break;
     case "Biblioteca":
-      return "markers/iconos para mapa interactivo 2018-25.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-25.svg";
+      break;
     case "Centros de formación artistica":
-      return "markers/iconos para mapa interactivo 2018-25.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-25.svg";
+      break;
     case "Colecciones y archivos":
-      return "markers/iconos para mapa interactivo 2018-25.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-25.svg";
+      break;
     case "Edificios, casas o conjuntos emblemáticos":
-      return "markers/iconos para mapa interactivo 2018-25.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-25.svg";
+      break;
     case "Monumentos":
-      return "markers/iconos para mapa interactivo 2018-25.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-25.svg";
+      break;
     case "Puntos historicos":
-      return "markers/iconos para mapa interactivo 2018-25.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-25.svg";
+      break;
     case "Salas de exposición":
-      return "markers/iconos para mapa interactivo 2018-25.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-25.svg";
+      break;
     case "Teatros":
-      return "markers/iconos para mapa interactivo 2018-25.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-25.svg";
+      break;
     case "Cafés":
-      return "markers/iconos para mapa interactivo 2018-39 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-39 (1).svg";
+      break;
     case "Mercados agroecológicos":
-      return "markers/iconos para mapa interactivo 2018-39 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-39 (1).svg";
+      break;
     case "Restaurantes":
-      return "markers/iconos para mapa interactivo 2018-39 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-39 (1).svg";
+      break;
     case "Hotel":
-      return "markers/iconos para mapa interactivo 2018-42 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-42 (1).svg";
+      break;
     case "Operador Turistico":
-      return "markers/iconos para mapa interactivo 2018-42 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-42 (1).svg";
+      break;
     case "Parque Tematico":
-      return "markers/iconos para mapa interactivo 2018-42 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-42 (1).svg";
+      break;
     case "Arquitectura":
-      return "markers/iconos para mapa interactivo 2018-34 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-34 (1).svg";
+      break;
     case "Investigación desarrollo e innovación":
-      return "markers/iconos para mapa interactivo 2018-34 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-34 (1).svg";
+      break;
     case "Mercados creativos":
-      return "markers/iconos para mapa interactivo 2018-34 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-34 (1).svg";
+      break;
     case "Jardin Botanico":
-      return "markers/iconos para mapa interactivo 2018-27.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-27.svg";
+      break;
     case "Mirador":
-      return "markers/iconos para mapa interactivo 2018-27.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-27.svg";
+      break;
     case "Monumento Natural":
-      return "markers/iconos para mapa interactivo 2018-27.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-27.svg";
+      break;
     case "Parques naturales":
-      return "markers/iconos para mapa interactivo 2018-27.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-27.svg";
+      break;
     case "Reserva natural":
-      return "markers/iconos para mapa interactivo 2018-27.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-27.svg";
+      break;
     case "Zoologico":
-      return "markers/iconos para mapa interactivo 2018-27.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-27.svg";
+      break;
     case "Relajación, meditación, yoga":
-      return "markers/iconos para mapa interactivo 2018-43 (2).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-43 (2).svg";
+      break;
     case "Cocinas tradicionales y etnogastronomía":
-      return "markers/iconos para mapa interactivo 2018-26.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-26.svg";
+      break;
     case "Conciertos":
-      return "markers/iconos para mapa interactivo 2018-26.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-26.svg";
+      break;
     case "Estudios de historia, memoria y patrimonio":
-      return "markers/iconos para mapa interactivo 2018-26.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-26.svg";
+      break;
     case "Festivales, fiestas y ferias":
-      return "markers/iconos para mapa interactivo 2018-26.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-26.svg";
+      break;
     case "Mercados ancestrales y de agricultura":
-      return "markers/iconos para mapa interactivo 2018-26.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-26.svg";
+      break;
     case "Esctitura y producción literaria":
-      return "markers/iconos para mapa interactivo 2018-31 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-31 (1).svg";
+      break;
     case "Prensa, periodicos, revistas":
-      return "markers/iconos para mapa interactivo 2018-31 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-31 (1).svg";
+      break;
     case "Promocion de lectura y escritura":
-      return "markers/iconos para mapa interactivo 2018-31 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-31 (1).svg";
+      break;
     case "Centros de formación":
-      return "markers/iconos para mapa interactivo 2018-47.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-47.svg";
+      break;
     case "Observatorios":
-      return "markers/iconos para mapa interactivo 2018-47.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-47.svg";
+      break;
     case "Universidad":
-      return "markers/iconos para mapa interactivo 2018-47.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-47.svg";
+      break;
     case "Centro Comercial":
-      return "markers/iconos para mapa interactivo 2018-45.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-45.svg";
+      break;
     case "Empresa del sector privado":
-      return "markers/iconos para mapa interactivo 2018-37 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-37 (1).svg";
+      break;
     case "Niñez":
-      return "markers/iconos para mapa interactivo 2018-37 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-37 (1).svg";
+      break;
     case "Organización de la sociedad civil":
-      return "markers/iconos para mapa interactivo 2018-37 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-37 (1).svg";
+      break;
     case "Danza":
-      return "markers/iconos para mapa interactivo 2018-29 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-29 (1).svg";
+      break;
     case "Teatro":
-      return "markers/iconos para mapa interactivo 2018-29 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-29 (1).svg";
+      break;
     case "Títeres y marionetas":
-      return "markers/iconos para mapa interactivo 2018-29 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-29 (1).svg";
+      break;
     case "Fotografía":
-      return "markers/iconos para mapa interactivo 2018-28.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-28.svg";
+      break;
     case "Graffiti":
-      return "markers/iconos para mapa interactivo 2018-28.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-28.svg";
+      break;
     case "Instalación":
-      return "markers/iconos para mapa interactivo 2018-28.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-28.svg";
+      break;
     case "Cine":
-      return "markers/iconos para mapa interactivo 2018-32 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-32 (1).svg";
+      break;
     case "Fotografia":
-      return "markers/iconos para mapa interactivo 2018-32 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-32 (1).svg";
+      break;
     case "Medio de comunicación":
-      return "markers/iconos para mapa interactivo 2018-32 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-32 (1).svg";
+      break;
     case "Radio":
-      return "markers/iconos para mapa interactivo 2018-32 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-32 (1).svg";
+      break;
     case "Organización comunitaria":
-      return "markers/iconos para mapa interactivo 2018-38 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-38 (1).svg";
+      break;
     case "Parques":
-      return "markers/iconos para mapa interactivo 2018-50.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-50.svg";
+      break;
     case "Plaza":
-      return "markers/iconos para mapa interactivo 2018-50.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-50.svg";
+      break;
     case "Discotecas y clubes nocturnos":
-      return "markers/iconos para mapa interactivo 2018-40 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-40 (1).svg";
+      break;
     case "Lugares de bohemia":
-      return "markers/iconos para mapa interactivo 2018-40 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-40 (1).svg";
+      break;
     case "Alcaldía":
-      return "markers/iconos para mapa interactivo 2018-48.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-48.svg";
+      break;
     case "Entidades descentralizadas":
-      return "markers/iconos para mapa interactivo 2018-48.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-48.svg";
+      break;
     case "Gobernación":
-      return "markers/iconos para mapa interactivo 2018-48.svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-48.svg";
+      break;
     case "Iglesia":
-      return "markers/iconos para mapa interactivo 2018-44 (2).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-44 (2).svg";
+      break;
     case "Centros de recreación":
-      return "markers/iconos para mapa interactivo 2018-41 (2).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-41 (2).svg";
+      break;
     case "Infraestructura deportiva":
-      return "markers/iconos para mapa interactivo 2018-41 (2).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-41 (2).svg";
+      break;
     case "Mercado artesanal":
-      return "markers/iconos para mapa interactivo 2018-36 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-36 (1).svg";
+      break;
     case "Producción de animaciones":
-      return "markers/iconos para mapa interactivo 2018-33 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-33 (1).svg";
+      break;
     case "Conversatorio":
-      return "markers/iconos para mapa interactivo 2018-30 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-30 (1).svg";
+      break;
     case "Interpretación":
-      return "markers/iconos para mapa interactivo 2018-30 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-30 (1).svg";
+      break;
     case "Moda":
-      return "markers/iconos para mapa interactivo 2018-35 (1).svg";
+      iconPath = "markers/iconos para mapa interactivo 2018-35 (1).svg";
+      break;
     default:
-      window.console.log("Pending: ", `-${feature.properties["tags"]}-`);
+      window.console.warn(`Pending icon for category "${str}".`);
       break;
   }
+  return iconPath;
 }
