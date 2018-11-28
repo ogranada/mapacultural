@@ -42,7 +42,9 @@
                 :class="{isExpanded: isExpanded(key, subkey)}"
                 >
                 <li v-for="(finalvalue, finalkey) in subvalue" :key="finalkey" v-if="isValidByFilter(finalvalue)">
-                  <div class="CulturalItemsMenu-placeItem">
+                  <div class="CulturalItemsMenu-placeItem"
+                    @click="markerAction(finalvalue)"
+                    >
                     <img class="CulturalItemsMenu-icon" :src="getIcon(finalvalue.properties.tags)" :alt="finalvalue.properties.nombre">
                     <span>{{ finalvalue.properties.nombre }}</span>
                   </div>
@@ -57,12 +59,12 @@
 </template>
 
 <script>
-import interact from "interactjs";
-import {toTitleCase} from "../utils.js";
+import interact from 'interactjs';
+import {toTitleCase} from '../utils.js';
 
 export default {
-  name: "CulturalItemsMenu",
-  props: ["items", "icons"],
+  name: 'CulturalItemsMenu',
+  props: ['items', 'icons', 'map', 'markers'],
   data: () => ({
     expandedItems: {},
     filter: ''
@@ -82,6 +84,24 @@ export default {
     }
   },
   methods: {
+    markerAction(value){
+      const lat = value.geometry.coordinates[1];
+      const lng = value.geometry.coordinates[0];
+      const area = value.properties.area;
+      const name = value.properties.nombre;
+      const marker_name = `${lat}_${lng}_${area}_${name}`.replace(/\s/g,'_');
+      const marker = this.markers[marker_name];
+      window.console.log(marker_name);
+      window.console.log(marker);
+      const coords = {
+        lat,
+        lng
+      }
+      this.map.flyTo(coords, 18);
+      setTimeout(() => {
+        marker.openPopup();
+      }, 2000);
+    },
     isValidByFilter (value) {
       return value.properties.nombre
         .toLowerCase()

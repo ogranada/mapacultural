@@ -1,7 +1,11 @@
 <template>
   <div class="CulturalMap">
     <div class="CulturalMap-map" id="CulturalMap"></div>
-    <cultural-items-menu :items="this.grouped" :icons="this.categoryImages"/>
+    <cultural-items-menu
+      :map="this.map"
+      :markers="this.markers"
+      :items="this.grouped"
+      :icons="this.categoryImages"/>
   </div>
 </template>
 
@@ -12,8 +16,10 @@ import {getIconUrlFromTag, getIconFromString, toTitleCase} from '../utils.js';
 export default {
   name: "CulturalMap",
   data: () => ({
+    map: null,
     grouped: {},
-    categoryImages: {}
+    categoryImages: {},
+    markers: {},
   }),
   methods: {
     onEachFeature(feature, layer) {
@@ -71,9 +77,11 @@ export default {
       ]);
       const categoryImages = {};
       data.forEach(elm => {
+        const me = this;
         let layer = window.L.geoJSON(elm, {
           onEachFeature: this.onEachFeature,
           pointToLayer: function(feature, latlng) {
+            const nameStr = toTitleCase(feature.properties["nombre"]).trim();
             const areaStr = toTitleCase(feature.properties["area"]).trim();
             const iconPathArea = getIconFromString(areaStr);
             const iconPath = getIconUrlFromTag(feature);
@@ -91,7 +99,9 @@ export default {
             if (icon) {
               markerData["icon"] = icon;
             }
-            return window.L.marker(latlng, markerData);
+            const marker = window.L.marker(latlng, markerData);
+            me.markers[`${latlng.lat}_${latlng.lng}_${areaStr}_${nameStr}`.replace(/\s/g,'_')] = marker;
+            return marker;
           }
         });
         let cluster = new window.L.MarkerClusterGroup({
