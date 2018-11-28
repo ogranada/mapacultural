@@ -2,7 +2,9 @@
   <div class="CulturalItemsMenu">
     <div class="CulturalItemsMenu-searchContainer">
       <input type="text" class="CulturalItemsMenu-search" placeholder="Search" v-model="filter">
-      <button class="CulturalItemsMenu-searchButton"></button>
+      <button class="CulturalItemsMenu-searchButton">
+        <i class="fa fa-search"></i>
+      </button>
     </div>
     <ul class="CulturalItemsMenu-items">
       <li
@@ -41,7 +43,7 @@
                 class="CulturalItemsMenu-itemsMenu"
                 :class="{isExpanded: isExpanded(key, subkey)}"
                 >
-                <li v-for="(finalvalue, finalkey) in subvalue" :key="finalkey" v-if="isValidByFilter(finalvalue)">
+                <li v-for="(finalvalue, finalkey) in getValidPlaces(subvalue)" :key="finalkey">
                   <div class="CulturalItemsMenu-placeItem"
                     @click="markerAction(finalvalue)"
                     >
@@ -81,13 +83,16 @@ export default {
           acc[item] = this.items[item];
           return acc;
         }, {});
-    }
+    },
   },
   methods: {
+    getValidPlaces(values) {
+      return values.filter(this.isValidByFilter);
+    },
     markerAction(value){
       const lat = value.geometry.coordinates[1];
       const lng = value.geometry.coordinates[0];
-      const area = value.properties.area;
+      const area = toTitleCase(value.properties.area);
       const name = value.properties.nombre;
       const marker_name = `${lat}_${lng}_${area}_${name}`.replace(/\s/g,'_');
       const marker = this.markers[marker_name];
@@ -309,26 +314,6 @@ export default {
     height: 25px;
     background: transparent;
     border: none;
-    &::before {
-      content: '';
-      position: absolute;
-      border: 2px solid black;
-      width: 4px;
-      height: 0px;
-      right: 2px;
-      top: 16px;
-      transform: rotateZ(42deg);
-    }
-    &::after {
-      content: '';
-      position: absolute;
-      border: 2px solid black;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      right: 6px;
-      top: 4px;
-    }
   }
 
   &-search {
